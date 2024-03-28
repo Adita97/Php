@@ -1,0 +1,122 @@
+/*
+body {
+  margin: 0
+  font-family: Arial, sans-serif;
+}
+*/
+.logo {
+  height: 4vh;
+}
+
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center ;
+  padding: 0 10px ;
+  position: sticky !important;
+  top: 0 ;
+  box-sizing: border-box ;
+  width: 100vw ;
+  max-width: 100%;
+  background-color: #747264 !important;
+  box-shadow: 0 17px 39px 11px rgba(63, 0, 199, 0.62) ;
+  z-index: 10 ;
+  transition: box-shadow 0.3s ease;
+  padding: 10px;
+}
+
+.navbar:not(:hover) {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* .navbar ul {
+  position: relative;
+  height: 70px;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+} */
+
+.navbar ul:first-child{
+  margin-right: 1vw;
+}
+.navbar li {
+  margin-left: 3vw;
+  width: 100px;
+  /* height: 40px; */
+  /* padding-top: 25px; */
+  font-weight: bold;
+  list-style: none;
+  text-align: center;
+  text-transform: uppercase;
+}
+.navbar a {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  transition: 0.5s;
+}
+.navbar a:hover {
+  /* padding: 0 !important; */
+  background-color: #a581ff5b;
+  box-shadow: 0px 0px 100px 46px #a481ff;
+  text-decoration: underline white;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar ul{
+    padding: 0;
+  }
+
+  .navbar li{
+    margin-left:1vw ;
+    width: 85px;
+  }
+} 
+
+/* Bootstrap*/
+
+.nav-link{
+  display: inline !important;
+  margin-top: 10px !important;
+}
+
+bg-body-tertiary {
+  background-color: #747264 !important;
+}
+
+.login-button{
+  width: 45vw !important;
+  display: flex !important;
+  justify-content: end;
+  margin: auto;
+}
+
+.login-button a{
+  background-color: aqua;
+  padding: 5px 30px;
+}
+
+@media screen and (max-width: 1340px) {
+  .login-button{
+    width: 35vw !important;
+  }
+}
+
+@media screen and (max-width: 1220px) {
+  .login-button{
+    width: 30vw !important;
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .login-button{
+    width: 100px !important;
+    
+    justify-content: center;
+  }
+}
