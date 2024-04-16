@@ -288,18 +288,22 @@
   
 }
 .form-control {
-  width: 45vw;
+  
   height: 6vh;
 }
 
-.btn{
+.contact-input{
+width: 45vw;
+}
+
+.contact-btn{
   width: 7vw
 }
 @media screen and (max-width: 1200px) {
-  .form-control {
+  .contact-input {
     width: 80vw !important;
   }
-  .btn{
+  .contact-btn{
     width: 20vw;
   }
 }
@@ -417,3 +421,6 @@ iframe {
   }
 }
 
+ul{
+  margin-bottom: 0 !important;
+}

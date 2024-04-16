@@ -1,5 +1,23 @@
 <?php
+session_start();
 include './navbar.php';
+require_once 'pdo.php';
+
+if( isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['email']) &&isset($_POST['subject']) && isset($_POST['message']))
+{
+  $sql ="INSERT INTO contact_form (first_name, last_name, email, subject, message)
+  VALUES (:first_name, :last_name, :email, :subject, :message)";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute(array(
+    ':first_name' => $_POST['first_name'],
+    ':last_name' => $_POST['last_name'],
+    ':email' => $_POST['email'],
+    ':subject' => $_POST['subject'],
+    ':message' => $_POST['message']
+
+  ));
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +38,6 @@ include './navbar.php';
     ></script>
 
     <link rel="stylesheet" href="../styles/style.css" />
-    <!-- <script src="../scripts/navbar.js"></script> -->
-    <script src="../scripts/footer.js" defer></script>
     <script src="../scripts/formValidation.js" defer></script>
     <title>CelestialCapture</title>
   </head>
@@ -29,49 +45,6 @@ include './navbar.php';
     <div class="contact-section">
       <h1 class="section-title">Contact Us</h1>
       <div class="contact-container">
-        <!-- <div class="form-container">
-          <form class="contact-form" onsubmit="return validateForm(event)">
-            <div class="first-row">
-              <div>
-                <span id="firstNameError" class="error"></span><br />
-                <input type="text" id="first-name" placeholder="First Name*" />
-              </div>
-              <div>
-                <span id="lastNameError" class="error"></span><br />
-                <input type="text" id="last-name" placeholder="Last Name*" />
-              </div>
-              <span></span>
-            </div>
-            <span id="emailError" class="error"></span>
-            <input
-              class="email"
-              id="contact-email"
-              type="text"
-              placeholder="Email Address*"
-            />
-            <span id="subjectError" class="error"></span>
-            <input
-              id="subject"
-              class="subject"
-              type="text"
-              placeholder="Subject"
-            />
-            <span id="messageError" class="error"></span>
-            <textarea
-              id="message"
-              placeholder="Your message goes here..."
-              name="message"
-              class="message"
-              cols="30"
-              rows="10"
-            ></textarea>
-            <div class="submit-container">
-              <input class="form-button" type="submit" value="Submit" />
-              <h1 id="submitCount"></h1>
-            </div>
-            
-          </form>
-        </div> -->
 
         <div class="container">
           <div class="row justify-content-center mt-5">
@@ -79,7 +52,7 @@ include './navbar.php';
               <div class="form-container">
                 <form
                   class="contact-form"
-                  onsubmit="return validateForm(event)"
+                  method ='POST'
                 >
                   <div class="form-row">
                     <div class="col">
@@ -87,8 +60,9 @@ include './navbar.php';
                       <input
                         type="text"
                         id="first-name"
-                        class="form-control mb-3"
+                        class="form-control contact-input mb-3"
                         placeholder="First Name*"
+                        name="first_name"
                       />
                     </div>
                     <div class="col">
@@ -96,35 +70,38 @@ include './navbar.php';
                       <input
                         type="text"
                         id="last-name"
-                        class="form-control mb-3"
+                        class="form-control contact-input mb-3"
                         placeholder="Last Name*"
+                        name="last_name"
                       />
                     </div>
                   </div>
                   <span id="emailError" class="error"></span>
                   <input
-                    class="form-control mb-3"
+                    class="form-control contact-input mb-3"
                     id="contact-email"
                     type="text"
                     placeholder="Email Address*"
+                    name = "email"
                   />
                   <span id="subjectError" class="error"></span>
                   <input
                     id="subject"
-                    class="form-control mb-3"
+                    class="form-control contact-input mb-3"
                     type="text"
                     placeholder="Subject"
+                    name ="subject"
                   />
                   <span id="messageError" class="error"></span>
                   <textarea
                     id="message"
                     placeholder="Your message goes here..."
                     name="message"
-                    class="form-control mb-3"
+                    class="form-control contact-input mb-3"
                     rows="5"
                   ></textarea>
                   <div class="submit-container">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn contact-btn btn-primary" type="submit">
                       Submit
                     </button>
                     <h1 id="submitCount"></h1>
@@ -147,7 +124,12 @@ include './navbar.php';
       </div>
     </div>
     <!------FOOTER------->
-    <div id="socialMedia"></div>
-    <div id="footer"></div>
+    
+    <div id="socialMedia">
+      <?php include 'social-media.php' ?>
+    </div>
+    <div id="footer">
+      <?php include 'footer.php' ?>
+    </div>
   </body>
 </html>

@@ -1,3 +1,8 @@
+<?php 
+session_start();
+include "navbar.php"; 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,8 +22,6 @@
   ></script>
 
   <link rel="stylesheet" href="../styles/style.css" />
-  <script src="../scripts/navbar.js"></script>
-  <script src="../scripts/footer.js" defer></script>
     <title>CelestialCapture</title>
   </head>
     <div class="about-us">
@@ -103,7 +106,11 @@
     </div>
     </div>
     <!------FOOTER------->
-    <div id="socialMedia"></div>
-    <div id="footer"></div>
+    <div id="socialMedia">
+      <?php include 'social-media.php' ?>
+    </div>
+    <div id="footer">
+      <?php include 'footer.php' ?>
+    </div>
   </body>
 </html>

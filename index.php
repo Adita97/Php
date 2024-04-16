@@ -1,5 +1,6 @@
 <?php
-include 'pages/navbar.php'
+session_start();
+include 'pages/navbar.php';
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +45,7 @@ include 'pages/navbar.php'
           Your indelible memories start here, framed in the beauty of each
           captured instant.
         </h4>
-        <a id="book-now-button" class="button" href="#">Book now</a>
+        <a id="book-now-button" class="button" href="/My-first-website/pages/booking.php">Book now</a>
       </div>
     </div>
     <!--End of introduction-->
@@ -75,7 +76,7 @@ include 'pages/navbar.php'
           <img
             src="images/Adelina-+-Moon.jpg"
             alt=""
-            height="500px"
+            width="500px"
             class="image"
           />
           <div>
@@ -156,8 +157,13 @@ include 'pages/navbar.php'
       </div>
     </div>
 
-    <div id="socialMedia"></div>
-    <div id="footer"></div>
-    <script src="./scripts/footer.js"></script>
+    <div id="socialMedia">
+      <?php require_once "pages/social-media.php" ?>
+
+    </div>
+    <div id="footer">
+      <?php require_once ("pages/footer.php") ?>
+    </div>
+    <!-- <script src="./scripts/footer.js"></script> -->
   </body>
 </html>

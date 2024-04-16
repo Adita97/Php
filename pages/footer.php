@@ -1,11 +1,12 @@
 
       <footer class="footer">
+        
         <div class="footer-menu footer-section">
           <h3>Menu</h3>
           <br />
-          <a href="index.html">Home</a>
-          <a href="about-us.html">About Us</a>
-          <a href="contact-us.html">Contact</a>
+          <a href="index.php">Home</a>
+          <a href="about-us.php">About Us</a>
+          <a href="contact-us.php">Contact</a>
         </div>
         <div class="footer-section">
           <h3>Frame-Worthy News: Join Our Newsletter</h3>

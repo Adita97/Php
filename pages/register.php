@@ -11,33 +11,40 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Escape user inputs for security
+    $fullName = $conn->real_escape_string($_POST['full_name']);
+    $email = $conn->real_escape_string($_POST['email']);
+    $phone = $conn->real_escape_string($_POST['phone_number']);
     $username = $conn->real_escape_string($_POST['username']);
     $password = $conn->real_escape_string($_POST['password']);
 
 
     // Prepare a statement
-    $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+    $stmt = $conn->prepare("INSERT INTO users (full_name, email, phone_number, username, password) VALUES (?, ?, ?, ?, ?)");
 
     $check_username_sql = "SELECT * FROM users WHERE username = '$username'";
     $result = $conn->query($check_username_sql);
 
+    $check_email_sql ="SELECT * FROM users WHERE email ='$email'";
+    $email_result = $conn->query($check_email_sql);
+
 
     if ($stmt) {
         // Bind parameters
-        $stmt->bind_param("ss", $username, $password);
+        $stmt->bind_param("sssss", $fullName, $email, $phone, $username, $password);
 
         // Execute the statement
         if($result && $result->num_rows > 0) {
             // Username already exists, display an error message
             echo "Username already exists. Please choose a different username.";
         
+        }else if($email_result && $email_result->num_rows > 0){
+            echo "The email address was already used. Please log in.";
         } else if ($stmt->execute()) {
             // Registration successful
             echo "Registration Succesfull";
             // Redirect to login page after 2 seconds using JavaScript
             echo "<script>setTimeout(function() { window.location.href = 'login.php'; }, 2000);</script>";
             echo "Registration successful. Redirecting to login page...";
-            
         }  else {
             echo "Error: " . $stmt->error;
         }
@@ -67,6 +74,18 @@ $conn->close();
     <div class="container d-flex flex-column align-items-center">
         <h2 class="mt-5">Register</h2>
         <form class="mt-4" method="post" action="register.php">
+            <div class="form-group">
+                <label for="full_name">Full Name:</label>
+                <input type="text" class="form-control" id="full-name" name="full_name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="tel" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone_number">Phone Number:</label>
+                <input type="tel" class="form-control" id="phone" name="phone_number" required>
+            </div>
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" class="form-control" id="username" name="username" required>
